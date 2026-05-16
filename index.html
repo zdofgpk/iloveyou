@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+  <title>Nuestro Primer Año 💕</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@400;600;700&family=Parisienne&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Lora:ital,wght@0,400;1,400;1,600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<!-- Lluvia de corazones canvas -->
+<canvas id="heartRain"></canvas>
+<!-- Corazones ambientales -->
+<div id="ambientHearts" aria-hidden="true"></div>
+
+<!-- Botón música -->
+<button id="musicBtn" aria-label="Play/Pause música">
+  <svg id="iPlay" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+  <svg id="iPause" viewBox="0 0 24 24" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+</button>
+<!-- Reemplaza src con tu canción favorita -->
+<audio id="bgMusic" loop>
+  <source src="01.mp3" type="audio/mpeg"/>
+</audio>
+
+<!-- ======================================================
+     PORTADA
+====================================================== -->
+<div id="cover" role="button" tabindex="0" aria-label="Abrir libro de amor">
+  <div class="c-corner tl"></div><div class="c-corner tr"></div>
+  <div class="c-corner bl"></div><div class="c-corner br"></div>
+  <div class="c-spine"></div>
+
+  <div class="c-content">
+    <p class="c-eyebrow">Un año de amor juntos</p>
+
+    <div class="c-heart-wrap">
+      <svg viewBox="0 0 200 180" class="c-heart-svg">
+        <defs>
+          <radialGradient id="hg" cx="50%" cy="38%" r="60%">
+            <stop offset="0%" stop-color="#ffb3c6"/>
+            <stop offset="100%" stop-color="#b5152b"/>
+          </radialGradient>
+          <filter id="hGlow">
+            <feGaussianBlur stdDeviation="5" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <path class="c-heart-path"
+          d="M100 158 C58 128 8 96 8 58 A42 42 0 0 1 100 43 A42 42 0 0 1 192 58 C192 96 142 128 100 158Z"
+          fill="url(#hg)" filter="url(#hGlow)"/>
+        <text x="100" y="80" text-anchor="middle" class="c-initials">Ilma + Yhack</text>
+      </svg>
+      <div id="burstRing"></div>
+    </div>
+
+    <h1 class="c-title">Nuestro Primer<br/>Año Juntos</h1>
+    <p class="c-date">16 de Mayo Nuestra Fecha Especial</p>
+    <p class="c-hint">✦ Toca para abrir ✦</p>
+  </div>
+</div>
+
+<!-- ======================================================
+     LIBRO INTERIOR
+====================================================== -->
+<div id="book" aria-hidden="true">
+
+
+  <!-- VIEWPORT para páginas -->
+  <div id="pagesViewport">
+
+    <!-- Stack de páginas (una visible a la vez, flip 3D) -->
+    <div id="pagesStack">
+
+      <!-- PÁGINA 1 — Bienvenida + foto -->
+      <div class="page" data-index="0">
+        <div class="page-face page-front">
+          <div class="pg-corner tl"></div><div class="pg-corner tr"></div>
+          <div class="pg-corner bl"></div><div class="pg-corner br"></div>
+          <div class="pg-num">1</div>
+          <div class="pg-ornament">✦ El comienzo de todo ✦</div>
+          <div class="polaroid tilt-l">
+            <!-- REEMPLAZA con tu foto real -->
+            <img src="01.jpg" alt="Nuestra primera foto juntos" loading="lazy"/>
+            <p class="p-cap">Nuestra primera foto juntos 💕</p>
+          </div>
+          <div class="pg-letter">
+            <p>Mi bobita,</p>
+            <p>Hoy en el aniversario de nuestro primer año juntos, no puedo evitar recordar el día que nos conocimos y como poco a poco nos fuimos acercando. Te conte que llamaste mi atención y poco a poco fui acercandome a ti, para poder conocerte más y asi supe que eras una persona especial con un corazón muy hermoso y me alegra el estar contigo, estoy muy feliz haberte pedido que seas mi enamorada, mi novia, mi bobita, mi mejor amiga, mi todo gracias por este año mi niña.</p>
+            <p>Hoy 16 es uno de los dias mas importantes de mi vida, hoy nuestros corazones y vida se entrelazaron y juntos decidimos crecer en la vida, siempre te recordare mi amor.</p>
+            <p>Tenemos mucho por crecer y por vivir pero este año fue especial, ya que es el primero, tenemos mucho por descubrir niña pero nos tenemos el uno al otro para afrontar lo que nos depare el futuro.</p>
+            <p class="pg-sign">Con todo el amor de tu Bobote,<br/><em>Siempre tuyo Yhack ❤️</em></p>
+          </div>
+        </div>
+        <div class="page-face page-back">
+          <!-- reverso visible durante el flip -->
+          <div class="page-back-inner">
+            <div class="back-ornament">💕</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PÁGINA 2 — Foto 2 -->
+      <div class="page" data-index="1">
+        <div class="page-face page-front">
+          <div class="pg-corner tl"></div><div class="pg-corner tr"></div>
+          <div class="pg-corner bl"></div><div class="pg-corner br"></div>
+          <div class="pg-num">2</div>
+          <div class="pg-ornament">✦ Un momento para siempre ✦</div>
+          <div class="polaroid tilt-r">
+            <!-- REEMPLAZA con tu foto real -->
+            <img src="02.jpeg" alt="Recuerdo especial" loading="lazy"/>
+            <p class="p-cap">Un collage de nuestro primer año 🌸</p>
+          </div>
+          <div class="pg-letter">
+            <p>Este pequeño detalle lo hice para recordar nuestro amor. Aqui se muestra cada recuerdo que atesoro, y momentos que vivimos juntos.</p>
+            <p>Gracias por cada mirada, cada risa, cada segundo a tu lado te amo Ilma, hiciste muy especial mi vida, gracias por hacerme feliz, y dejarme sentir tu amor y demostrarte el mio. 💕</p>
+          </div>
+        </div>
+        <div class="page-face page-back"><div class="page-back-inner"><div class="back-ornament">🌸</div></div></div>
+      </div>
+
+      <!-- PÁGINA 3 — Foto 3 -->
+      <div class="page" data-index="2">
+        <div class="page-face page-front">
+          <div class="pg-corner tl"></div><div class="pg-corner tr"></div>
+          <div class="pg-corner bl"></div><div class="pg-corner br"></div>
+          <div class="pg-num">3</div>
+          <div class="pg-ornament">✦ Contigo el mundo es distinto ✦</div>
+          <div class="polaroid tilt-l">
+            <!-- REEMPLAZA con tu foto real -->
+            <img src="03.jpeg" alt="Otro recuerdo" loading="lazy"/>
+            <p class="p-cap">Riendo sin parar 😄</p>
+          </div>
+          <div class="pg-letter">
+            <p>Cuando estoy con tigo, el mundo se vuelve más hermoso, mis dias tienen mas color, siempre me apoyas aunque este cansado o triste gracias mi bebita 💕</p>
+            <p>Este año contigo fue muy especial, vivimos muchos momentos inolvidables. 💕</p>
+          </div>
+        </div>
+        <div class="page-face page-back"><div class="page-back-inner"><div class="back-ornament">✨</div></div></div>
+      </div>
+
+      <!-- PÁGINA 4 — Imagen decorativa + POEMA (popup) -->
+      <div class="page poem-trigger-page" data-index="3">
+        <div class="page-face page-front">
+          <div class="pg-corner tl"></div><div class="pg-corner tr"></div>
+          <div class="pg-corner bl"></div><div class="pg-corner br"></div>
+          <div class="pg-num">4</div>
+          <div class="pg-ornament">✦ Un poema guardado para ti ✦</div>
+
+          <!-- Imagen PNG decorativa — reemplaza src con tu PNG artístico -->
+          <div class="poem-img-btn" id="poemTrigger" role="button" tabindex="0" aria-label="Leer poema">
+            <img src="https://picsum.photos/seed/flowers_art/380/380" alt="Imagen poética" class="poem-deco-img"/>
+            <div class="poem-img-veil">
+              <svg viewBox="0 0 60 55" width="46" height="46">
+                <path d="M30 50 C14 38 2 28 2 16 A14 14 0 0 1 30 10 A14 14 0 0 1 58 16 C58 28 46 38 30 50Z" fill="rgba(255,255,255,.9)"/>
+              </svg>
+              <span>Toca para leer<br/>unas palabras mi corazón ✨</span>
+            </div>
+          </div>
+          <p class="poem-invite">— Hay palabras guardadas solo para ti —</p>
+        </div>
+        <div class="page-face page-back"><div class="page-back-inner"><div class="back-ornament">📖</div></div></div>
+      </div>
+
+      <!-- PÁGINA 5 — Galería de recuerdos -->
+      <div class="page" data-index="4">
+        <div class="page-face page-front">
+          <div class="pg-corner tl"></div><div class="pg-corner tr"></div>
+          <div class="pg-corner bl"></div><div class="pg-corner br"></div>
+          <div class="pg-num">5</div>
+          <div class="pg-ornament">✦ Nuestra galería ✦</div>
+          <div class="gallery-grid">
+            <!-- REEMPLAZA seeds con tus fotos: src="foto.jpg" -->
+            <div class="polaroid mini tilt-l"><img src="05.jpg" loading="lazy"/><p class="p-cap">Paseando juntos</p></div>
+            <div class="polaroid mini tilt-r"><img src="06.jpg" loading="lazy"/><p class="p-cap">Cuando Viajamos Juntos</p></div>
+            <div class="polaroid mini tilt-l"><img src="07.jpg" loading="lazy"/><p class="p-cap">Mi foto favorita</p></div>
+            <div class="polaroid mini tilt-r"><img src="08.jpg" loading="lazy"/><p class="p-cap">Una Tarde Juntos</p></div>
+            <div class="polaroid mini tilt-l"><img src="09.jpg" loading="lazy"/><p class="p-cap">Mimiendo a tu lado</p></div>
+            <div class="polaroid mini tilt-r"><img src="10.jpg" loading="lazy"/><p class="p-cap">Una Navidad Juntos</p></div>
+          </div>
+        </div>
+        <div class="page-face page-back"><div class="page-back-inner"><div class="back-ornament">🖼️</div></div></div>
+      </div>
+
+      <!-- PÁGINA 6 — Reflexión del año -->
+      <div class="page" data-index="5">
+        <div class="page-face page-front">
+          <div class="pg-corner tl"></div><div class="pg-corner tr"></div>
+          <div class="pg-corner bl"></div><div class="pg-corner br"></div>
+          <div class="pg-num">6</div>
+          <div class="pg-ornament">✦ Nuestro año, completo ✦</div>
+          <div class="refl-block storm-block">
+            <h3 class="refl-title">Los días difíciles</h3>
+            <p class="refl-text">No todo fue perfecto o color de rosa. Hubo momentos de incertidumbre, discusiones tontas, y días en que la distancia fue un rival muy duro. Pero ante cada dificultad y obstaculo, nos aferrábamos más fuerte el uno al otro. Aprendimos a enfrentarlos y superarlos juntos, y eso hizo que nuestro amor fuera más fuerte.</p>
+          </div>
+          <div class="refl-divider">
+            <svg viewBox="0 0 180 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 12 Q45 2 90 12 Q135 22 180 12" stroke="#c9a96e" stroke-width="1.5" fill="none" opacity=".7"/>
+              <circle cx="90" cy="12" r="4" fill="#c9a96e" opacity=".8"/>
+            </svg>
+          </div>
+          <div class="refl-block light-block">
+            <h3 class="refl-title light">Los días de luz</h3>
+            <p class="refl-text">Y luego estaban los otros momentos: Los que mas me gusta recordar, los que me hacen sonreír cada vez que los pienso, las canciones que te envie pra conquistarte, las miradas que nos dimos, nuestros brazos y besos, y muchos mas que me hacen amarte incondcionalmente, y me hacen feliz por haberte encontrado, y que seas mi todo. Te amo Ilma. 💕</p>
+          </div>
+        </div>
+        <div class="page-face page-back"><div class="page-back-inner"><div class="back-ornament">🌤️</div></div></div>
+      </div>
+
+      <!-- PÁGINA 7 — Final -->
+      <div class="page final-page" data-index="6">
+        <div class="page-face page-front">
+          <div class="pg-corner tl"></div><div class="pg-corner tr"></div>
+          <div class="pg-corner bl"></div><div class="pg-corner br"></div>
+          <div class="pg-num">7</div>
+          <div class="pg-ornament">✦ TE AMO MI NIÑA ✦</div>
+          <div class="final-heart-box">
+            <svg class="final-heart-svg" viewBox="0 0 260 240" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="fhg" cx="50%" cy="35%" r="65%">
+                  <stop offset="0%" stop-color="#ffd6e0"/>
+                  <stop offset="55%" stop-color="#e8546a"/>
+                  <stop offset="100%" stop-color="#8b1a2a"/>
+                </radialGradient>
+                <filter id="fGlow"><feGaussianBlur stdDeviation="7" result="b"/>
+                  <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+              <path d="M130 210 C80 175 12 138 12 83 A58 58 0 0 1 130 58 A58 58 0 0 1 248 83 C248 138 180 175 130 210Z"
+                    fill="url(#fhg)" filter="url(#fGlow)"/>
+              <!-- Lazo dorado elegante -->
+              <path d="M65 192 Q130 218 195 192" stroke="#c9a96e" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+              <path d="M88 206 Q130 228 172 206" stroke="#e8d5b0" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <circle cx="130" cy="216" r="7" fill="#c9a96e"/>
+              <circle cx="130" cy="216" r="3.5" fill="#e8d5b0"/>
+              <text x="130" y="120" text-anchor="middle" class="final-initials">Ilma + Yhack</text>
+            </svg>
+            <div class="final-sparkles">💕 💖 💗</div>
+          </div>
+          <p class="final-quote">Te amo Ilma eres lo mejor que me ha pasado,<br/>Gracias por este año. Por cada risa, cada lágrima, cada momento,<br/>Eres Mi Persona Favorita. 💕</p>
+          <p class="final-sign">De tu bobote, <em>Yhack. ❤️</em></p>
+          <button id="restartBtn">
+            <svg viewBox="0 0 24 24"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
+            Volver al inicio
+          </button>
+        </div>
+        <div class="page-face page-back"><div class="page-back-inner"><div class="back-ornament">❤️</div></div></div>
+      </div>
+
+    </div><!-- /pagesStack -->
+  </div><!-- /pagesViewport -->
+
+  <!-- Navegación -->
+  <div id="navRow">
+    <button id="prevBtn" class="nav-btn" aria-label="Anterior">
+      <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z"/></svg>
+    </button>
+    <div id="dotsWrap"></div>
+    <button id="nextBtn" class="nav-btn" aria-label="Siguiente">
+      <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+    </button>
+  </div>
+
+</div><!-- /book -->
+
+<!-- ======================================================
+     MODAL POEMA
+====================================================== -->
+<div id="poemModal" aria-modal="true" role="dialog" aria-label="Poema" tabindex="-1">
+  <div class="pm-card" id="poemCard">
+    <button class="pm-close" id="poemClose" aria-label="Cerrar">✕</button>
+    <!-- Bordes decorativos del modal -->
+    <div class="pm-corner tl"></div><div class="pm-corner tr"></div>
+    <div class="pm-corner bl"></div><div class="pm-corner br"></div>
+
+    <div class="pm-ornament">— ✦ —</div>
+    <h2 class="pm-title">Del Bobote para su Bebita</h2>
+
+    <div class="pm-body">
+      <p>Te amo mi niña, mi bebita<br/>
+        vivimos muchas cosas este año,<br/>
+        todos los momentos a tu lado<br/>
+        fueron felices y algunos dificiles,
+        pero juntos los enfrentamos y superamos, superamos la distancia, superamos las peleas, y me hizo valorarte y quererte cada vez más.</p>
+
+      <p>Mi bebita sabes que siempre contaras conmigo para todo, y siempre estaré ahí para ti. Lo que nos depare el destino un futuro junto a ti es en lo que pienso, este año junto a ti es la base para crecer juntos, me esforzare para hacerte mas feliz mi amor, gracias por este año. Te amo mi amor.</p>
+    </div>
+    <p class="pm-attr">— Escrito solo para ti —</p>
+    <div class="pm-ornament">— ✦ —</div>
+    <!-- Corazones flotantes decorativos dentro del modal -->
+    <div class="pm-hearts" aria-hidden="true">
+      <span style="--d:0s;--l:10%">💕</span>
+      <span style="--d:.4s;--l:30%">🌸</span>
+      <span style="--d:.8s;--l:55%">💖</span>
+      <span style="--d:.2s;--l:75%">✨</span>
+      <span style="--d:1.1s;--l:88%">💗</span>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
